@@ -3,8 +3,8 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('meat.avi',fourcc, 20.0, (1280,720))
+#fourcc = cv2.VideoWriter_fourcc(*'XVID')
+#out = cv2.VideoWriter('meat.avi',fourcc, 20.0, (1280,720))
 
 # params for ShiTomasi corner detection
 feature_params = dict( maxCorners = 100,
@@ -47,7 +47,7 @@ while(1):
         frame = cv2.circle(frame,(a,b),5,color[i].tolist(),-1)
     img = cv2.add(frame,mask)
 
-    out.write(img)
+    #out.write(img)
 
     cv2.imshow('frame',img)
     k = cv2.waitKey(30) & 0xff
@@ -60,4 +60,4 @@ while(1):
 
 cv2.destroyAllWindows()
 cap.release()
-out.release()
+#out.release()
