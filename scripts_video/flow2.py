@@ -2,6 +2,9 @@ import cv2
 import numpy as np
 cap = cv2.VideoCapture("meat.mp4")
 
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('4.mp4',fourcc, 20.0, (480,480))
+
 ret, frame1 = cap.read()
 prvs = cv2.cvtColor(frame1,cv2.COLOR_BGR2GRAY)
 hsv = np.zeros_like(frame1)
@@ -18,6 +21,8 @@ while(1):
     hsv[...,2] = cv2.normalize(mag,None,0,255,cv2.NORM_MINMAX)
     rgb = cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
 
+    out.write(rgb)
+
     cv2.imshow('frame2',rgb)
     k = cv2.waitKey(30) & 0xff
     if k == 27:
@@ -28,4 +33,5 @@ while(1):
     prvs = next
 
 cap.release()
+out.release()
 cv2.destroyAllWindows()
